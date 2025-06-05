@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
 import androidx.appcompat.widget.SearchView.OnQueryTextListener
+import androidx.databinding.DataBindingUtil
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
@@ -22,9 +23,10 @@ class AnasayfaFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentAnasayfaBinding.inflate(inflater, container, false)
-        binding.toolbarAnasayfa.title = "Kişiler"
-        binding.rv.layoutManager = LinearLayoutManager(requireContext())
+        binding = DataBindingUtil.inflate(inflater,R.layout.fragment_anasayfa, container, false)
+        binding.anasayfaFragmentNesnesi = this
+        binding.anasayfaToolbarBaslik  = "Kişiler"
+
 
         val kisilerListesi = ArrayList<Kisiler>()
 
@@ -36,11 +38,7 @@ class AnasayfaFragment : Fragment() {
         kisilerListesi.add(k3)
 
         val kisilerAdapter = KisilerAdapter(requireContext(), kisilerListesi)
-        binding.rv.adapter = kisilerAdapter
-
-        binding.fab.setOnClickListener {
-            Navigation.findNavController(it).navigate(R.id.kisiKayitFragment)
-        }
+        binding.kisilerAdapter = kisilerAdapter
 
         binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextChange(newText: String): Boolean {
@@ -55,6 +53,10 @@ class AnasayfaFragment : Fragment() {
         })
 
         return binding.root
+    }
+
+    fun fabTikla(it:View){
+        Navigation.findNavController(it).navigate(R.id.kisiKayitGecis)
     }
 
     fun ara(aramaKelimesi: String) {

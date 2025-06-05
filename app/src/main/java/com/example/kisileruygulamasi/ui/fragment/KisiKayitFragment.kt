@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import com.example.kisileruygulamasi.R
 import com.example.kisileruygulamasi.databinding.FragmentKisiDetayBinding
 import com.example.kisileruygulamasi.databinding.FragmentKisiKayitBinding
@@ -17,19 +18,13 @@ class KisiKayitFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentKisiKayitBinding.inflate(inflater, container, false)
-
-        binding.toolbarKisiKayit.title = "Kişi Kayıt"
-
-        binding.buttonKaydet.setOnClickListener {
-            val kisi_ad1 = binding.editTextKisiAd.text.toString()
-            val kisi_tel1 = binding.editTextKisiTel.text.toString()
-            kaydet(kisi_ad1, kisi_tel1)
-        }
+        binding = DataBindingUtil.inflate(inflater,R.layout.fragment_kisi_kayit, container, false)
+        binding.kisiKayitFragment = this
+        binding.kisiKayitToolbarBaslik = "Kişi Kayıt"
         return binding.root
     }
 
-    fun kaydet(kisi_ad: String, kisi_tel: String) {
+    fun buttonkaydet(kisi_ad: String, kisi_tel: String) {
         Log.e("kişi kaydet", "$kisi_ad-$kisi_tel")
     }
 }
