@@ -7,14 +7,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.viewModels
 import com.example.kisileruygulamasi.R
 import com.example.kisileruygulamasi.databinding.FragmentKisiDetayBinding
 import com.example.kisileruygulamasi.databinding.FragmentKisiKayitBinding
+import com.example.kisileruygulamasi.ui.viewmodel.AnasayfaViewModel
+import com.example.kisileruygulamasi.ui.viewmodel.KisiKayitViewModel
 
 
 class KisiKayitFragment : Fragment() {
 
     private lateinit var binding: FragmentKisiKayitBinding
+    val viewModel: KisiKayitViewModel by viewModels()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
@@ -22,6 +26,10 @@ class KisiKayitFragment : Fragment() {
         binding.kisiKayitFragment = this
         binding.kisiKayitToolbarBaslik = "Kişi Kayıt"
         return binding.root
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
     }
 
     fun buttonkaydet(kisi_ad: String, kisi_tel: String) {

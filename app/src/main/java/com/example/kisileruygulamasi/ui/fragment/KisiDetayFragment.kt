@@ -7,15 +7,19 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.NavArgs
 import androidx.navigation.fragment.navArgs
 import com.example.kisileruygulamasi.R
 import com.example.kisileruygulamasi.databinding.FragmentKisiDetayBinding
+import com.example.kisileruygulamasi.ui.viewmodel.KisiDetayViewModel
+import com.example.kisileruygulamasi.ui.viewmodel.KisiKayitViewModel
 
 
 class KisiDetayFragment : Fragment() {
 
     private lateinit var binding: FragmentKisiDetayBinding
+    val viewModel: KisiDetayViewModel by viewModels()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
@@ -29,6 +33,10 @@ class KisiDetayFragment : Fragment() {
 
 
         return binding.root
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
     }
 
     fun buttonguncelle(kisi_id: Int, kisi_ad: String, kisi_tel: String) {
