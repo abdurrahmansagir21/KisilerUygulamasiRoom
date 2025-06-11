@@ -40,6 +40,6 @@ class KisiDetayFragment : Fragment() {
     }
 
     fun buttonguncelle(kisi_id: Int, kisi_ad: String, kisi_tel: String) {
-        Log.e("kişi güncelle", "$kisi_id-$kisi_ad-$kisi_tel")
+       viewModel.guncelle(kisi_id,kisi_ad,kisi_tel)
     }
 }

@@ -33,6 +33,6 @@ class KisiKayitFragment : Fragment() {
     }
 
     fun buttonkaydet(kisi_ad: String, kisi_tel: String) {
-        Log.e("kişi kaydet", "$kisi_ad-$kisi_tel")
+        viewModel.kaydet(kisi_ad,kisi_tel)
     }
 }
