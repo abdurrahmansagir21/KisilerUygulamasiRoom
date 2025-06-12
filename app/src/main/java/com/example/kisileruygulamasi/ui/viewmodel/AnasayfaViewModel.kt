@@ -20,6 +20,7 @@ class AnasayfaViewModel: ViewModel() {
     fun sil(kisi_id: Int) {
         viewModelScope.launch {
             krepo.sil(kisi_id)
+            kisileriyukle()
         }
     }
     fun kisileriyukle(){
