@@ -29,27 +29,21 @@ class AnasayfaFragment : Fragment() {
         binding.anasayfaFragmentNesnesi = this
         binding.anasayfaToolbarBaslik  = "Kişiler"
 
+        viewModel.kisilerListesi.observe(viewLifecycleOwner){
 
-        val kisilerListesi = ArrayList<Kisiler>()
+            val kisilerAdapter = KisilerAdapter(requireContext(), it,viewModel)
+            binding.kisilerAdapter = kisilerAdapter
+        }
 
-        val k1 = Kisiler(1, "Ahmet", "11111")
-        val k2 = Kisiler(2, "Zeynep", "2222")
-        val k3 = Kisiler(3, "Hüseyin", "29393")
-        kisilerListesi.add(k1)
-        kisilerListesi.add(k2)
-        kisilerListesi.add(k3)
-
-        val kisilerAdapter = KisilerAdapter(requireContext(), kisilerListesi)
-        binding.kisilerAdapter = kisilerAdapter
 
         binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextChange(newText: String): Boolean {
-                ara(newText)
+                viewModel.ara(newText)
                 return true
             }
 
             override fun onQueryTextSubmit(query: String): Boolean {
-                ara(query)
+                viewModel.ara(query)
                 return true
             }
         })
@@ -65,7 +59,5 @@ class AnasayfaFragment : Fragment() {
         Navigation.findNavController(it).navigate(R.id.kisiKayitGecis)
     }
 
-    fun ara(aramaKelimesi: String) {
-        Log.e("Kişi Ara", aramaKelimesi)
-    }
+
 }
