@@ -18,6 +18,7 @@ import com.example.kisileruygulamasi.data.entity.Kisiler
 import com.example.kisileruygulamasi.databinding.FragmentAnasayfaBinding
 import com.example.kisileruygulamasi.ui.adapter.KisilerAdapter
 import com.example.kisileruygulamasi.ui.viewmodel.AnasayfaViewModel
+import com.example.kisileruygulamasi.util.gecisYap
 
 class AnasayfaFragment : Fragment() {
     private lateinit var binding: FragmentAnasayfaBinding
@@ -50,14 +51,12 @@ class AnasayfaFragment : Fragment() {
 
         return binding.root
     }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
+    
 
     fun fabTikla(it:View){
-        Navigation.findNavController(it).navigate(R.id.kisiKayitGecis)
-    }
+
+        Navigation.gecisYap(it,R.id.kisiKayitGecis)
+     }
 
     override fun onResume() {
         super.onResume()
