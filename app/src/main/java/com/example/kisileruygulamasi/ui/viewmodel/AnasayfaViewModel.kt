@@ -5,12 +5,14 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.kisileruygulamasi.data.entity.Kisiler
 import com.example.kisileruygulamasi.data.repo.KisilerRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class AnasayfaViewModel: ViewModel() {
 
+@HiltViewModel
+class AnasayfaViewModel @Inject constructor(var krepo: KisilerRepository) : ViewModel() {
 
-    var krepo = KisilerRepository()
     var kisilerListesi = MutableLiveData<List<Kisiler>>()
 
     init {
@@ -23,12 +25,14 @@ class AnasayfaViewModel: ViewModel() {
             kisileriyukle()
         }
     }
-    fun kisileriyukle(){
+
+    fun kisileriyukle() {
         viewModelScope.launch {
-           kisilerListesi.value =  krepo.kisileriyukle()
+            kisilerListesi.value = krepo.kisileriyukle()
         }
     }
-    fun ara (aramaKelimesi:String){
+
+    fun ara(aramaKelimesi: String) {
         viewModelScope.launch {
             kisilerListesi.value = krepo.ara(aramaKelimesi)
         }
